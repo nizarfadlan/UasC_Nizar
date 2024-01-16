@@ -4,4 +4,9 @@
     <string name="pending">Pending</string>
     <string name="user">User</string>
     <string name="show">Show</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="title_header">Todo List</string>
+    <string name="welcome_text">Welcome admin</string>
+    <string name="back">Back</string>
 </resources>

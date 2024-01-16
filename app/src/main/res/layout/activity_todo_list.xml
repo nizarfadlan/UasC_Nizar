@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    tools:context=".TodoListActivity">
+
+    <TextView
+        android:id="@+id/tv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/back"
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="12dp"
+        android:textColor="@color/primary"
+        android:drawableStart="@drawable/chevron_left_24px"
+        android:drawableTint="@color/primary"
+        android:drawablePadding="2dp"
+        android:layout_gravity="center|start"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginHorizontal="20dp"
+        tools:ignore="UseCompatTextViewDrawableXml" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/todoRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/todo_list_item"
+        android:paddingHorizontal="10dp"/>
+
+</LinearLayout>

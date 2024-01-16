@@ -1,4 +1,4 @@
-package com.nizarfadlan.uasc_nizar
+package com.nizarfadlan.uasc_nizar.utils
 
 import android.Manifest
 import android.app.Activity
@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.nizarfadlan.uasc_nizar.R
 
 object Extensions {
     private const val CHANNEL_ID = "book_app"
@@ -22,9 +23,8 @@ object Extensions {
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
     }
 
-    fun Context.showNotification(activity: Activity, id: Int, title: String, message: String) {
+    fun Activity.showNotification(id: Int, title: String, message: String) {
         createNotificationChannel()
-        checkPermission(activity)
 
         val uniqueNotificationId = NOTIFICATION_ID + id
         val builder = NotificationCompat.Builder(this, CHANNEL_ID)
@@ -35,25 +35,34 @@ object Extensions {
             .setAutoCancel(true)
 
         with(NotificationManagerCompat.from(this)) {
-            checkPermission(activity)
+            checkPermission()
             notify(uniqueNotificationId, builder.build())
         }
     }
 
-    private fun checkPermission(activity: Activity) {
+    fun Activity.checkPermission() {
         if (ActivityCompat.checkSelfPermission(
-                activity,
+                this,
                 Manifest.permission.POST_NOTIFICATIONS
             ) != PackageManager.PERMISSION_GRANTED &&
             Build.VERSION_CODES.TIRAMISU == Build.VERSION.SDK_INT
         ) {
-            ActivityCompat.requestPermissions(
-                activity,
-                arrayOf(android.Manifest.permission.POST_NOTIFICATIONS),
-                NOTIFICATION_PERMISSION_REQUEST_CODE
-            )
+            requestNotificationPermission()
             return
         }
+    }
+
+    fun Activity.checkAndShowNotification(id: Int, title: String, message: String) {
+        checkPermission()
+        showNotification(id, title, message)
+    }
+
+    private fun Activity.requestNotificationPermission() {
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+            NOTIFICATION_PERMISSION_REQUEST_CODE
+        )
     }
 
     private fun Context.createNotificationChannel() {

@@ -1,4 +1,4 @@
-package com.nizarfadlan.uasc_nizar
+package com.nizarfadlan.uasc_nizar.model
 
 data class Todo(
     var userId: Int,
