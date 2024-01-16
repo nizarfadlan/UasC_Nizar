@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">UasC_Nizar</string>
+    <string name="title">Title</string>
+    <string name="pending">Pending</string>
+    <string name="user">User</string>
+    <string name="show">Show</string>
+</resources>
